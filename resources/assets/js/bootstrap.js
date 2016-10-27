@@ -8,7 +8,6 @@ window._ = require('lodash');
  */
 
 window.$ = window.jQuery = require('jquery');
-require('bootstrap-sass');
 
 /**
  * Vue is a modern JavaScript library for building interactive web interfaces
@@ -43,3 +42,11 @@ Vue.http.interceptors.push((request, next) => {
      broadcaster: 'pusher',
      key: '07d2cd5a83d11f29ad19',
  });
+
+/**
+ * Todas as bibiliotecas personalizadas vão ficar localizadas abaixo desse
+ * conteudo para evitar conflito entre as bibliotecas padrão.
+ */
+require('./libs/materialize')
+require('./libs/lightbox');
+require('./main');

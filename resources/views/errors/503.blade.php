@@ -1,47 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
+@extends('layouts.app')
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+@section('title')Aviso @endsection
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+@section('description')O XFind está em manutenção no momemnto, pedimos sua compreensão para que possamos resolver o problema @endsection
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato', sans-serif;
-            }
-
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
-
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
+    @section('content')
+        <main>
+            <br><br><br><br><br><br><br><br><br>
+            <div class="row">
+                <div class="col l3"></div>
+                <div class="col l6">
+                    <div class="card-panel">
+                        <h4>Estamos em manutenção</h4>
+                        <p>Estaremos de volta em um momento!</p>
+                        <small class="right">Estamos tentando corrigir o problema o mais rapido possivel</small>
+                    </div>
+                </div>
+                <div class="col l3"></div>
             </div>
-        </div>
-    </body>
-</html>
+        </main>
+
+    @endsection

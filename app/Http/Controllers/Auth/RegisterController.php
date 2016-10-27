@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Image;
+use App\Setting;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -27,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -62,10 +65,49 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        $user =  new User();
+        $user->name = $data['name'];
+        $user->last_name = $data['last_name'];
+        $user->email = $data['email'];
+        $user->password = bcrypt($data['password']);
+        $user->save();
+
+        $img = new Image();
+        $img->user_id = $user->id;
+        $img->save();
+        $img->name = $img->id.'.jpg';
+        $img->save();
+
+        $wallpaper = new Image();
+        $wallpaper->user_id = $user->id;
+        $wallpaper->save();
+        $wallpaper->name = $wallpaper->id.'.jpg';
+        $wallpaper->save();
+
+        $setting = new Setting;
+        $setting->user_id = $user->id;
+        $setting->profilepic = $img->name;
+        $setting->wallpaper = $wallpaper->name;
+        $setting->birthday = $data['bd_year'].'/'.$data['bd_month'].'/'.$data['bd_day'];
+        $setting->gender = $data['gender'];
+        $setting->about = 'Escreva uma breve descrição sobre você para que seus amigos possam te reconhecer';
+        $setting->status = 'Eu comecei a usar o XFind!';
+        $setting->save();
+
+        switch ($data['gender']){
+            case '1':
+                Storage::disk('public')->copy('/default_images/male_profile.jpg','images/'.$img->name);
+                break;
+            case '2':
+                Storage::disk('public')->copy('/default_images/female_profile.jpg','images/'.$img->name);
+                break;
+            case '3':
+                Storage::disk('public')->copy('/default_images/another_profile.jpg','images/'.$img->name);
+                break;
+        }
+
+        Storage::disk('public')->copy('/default_images/wallpaper.jpg', 'images/'.$wallpaper->name);
+
+        return $user;
     }
 }

@@ -13,8 +13,13 @@ require('./bootstrap');
  * the application, or feel free to tweak this setup for your needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components: {
+        'xf-chat':        require('./components/chat.vue'),
+        'xf-profile':     require('./components/profile.vue'),
+        'xf-friendships': require('./components/friendshiprequest.vue'),
+        'xf-thumb':       require('./components/thumbnail.vue')
+    }
 });
