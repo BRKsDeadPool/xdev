@@ -5,6 +5,8 @@
 @section('description')Veja tudo que seus amigos estão fazendo, curta e compartilhe, fique por dentro das novidades @endsection
 
 @section('content')
+    @include('components.navbar')
+
     <div class="row ">
         <div class="col l3 hide-on-med-and-down ">
             <div class="card-panel">
@@ -22,8 +24,10 @@
             </div>
         </div>
     </div>
-    @endsection
 
+    @include('components.footer')
+
+    @endsection
 
 @section('script')
     <script>

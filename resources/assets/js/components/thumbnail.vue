@@ -4,11 +4,9 @@
             'src',
             'width',
             'height',
-            'alt'
-        ],
-        mounted() {
-            console.log(this.src+' '+this.width+' '+this.height+' '+this.alt);
-        }
+            'alt',
+            'mclass'
+        ]
     }
 </script>
 
@@ -32,7 +30,7 @@
 
 <template>
     <div>
-    <div class="post-thumb" :style="'width:'+width+'; height:'+height">
+    <div v-bind:class="'post-thumb '+mclass" :style="'width:'+width+'; height:'+height">
         <img :src="src" :alt="alt">
     </div>
     </div>

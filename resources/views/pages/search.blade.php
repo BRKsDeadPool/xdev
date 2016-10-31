@@ -7,6 +7,7 @@
 @endif
 
 @section('content')
+@include('components.navbar')
 
     @if(isset($term))
         <div class="row">
@@ -80,46 +81,52 @@
                         </div>
                     @else
                         <div class="collection">
-                            <a href="{{ url('/search?term='.$last_searches->term) }}" class="collection-item dismissable">{{ $last_searches->term }} <span data-badge-caption="{{ $last_searches->results > 1 ? 'resultados' : 'resultado' }}" class="new badge">{{ $last_searches->results }}</span></a>
+                            {{ $last_searches }}
                         </div>
                     @endif
                 </div>
             </div>
         </div>
     @else
-        <div class="row">
-            <div class="col l8 s12 m12">
-                <div class="row card-panel" style="height: 280px">
-                    <div class="col l12 s12 m12">
-                        <div>
-                            Pesquise, encontre e conheça novas pessoas!
-                            <form class="search" action="{{ url('/search') }}">
-                                <div class="row col l12 s12 m12 input-field">
-                                    <span class="prefix mdi mdi-account-search"></span>
-                                    <input type="text" name="term" id="term" class="search_term" placeholder="Digite o que deseja encontrar">
-                                </div>
-                                <button hidden type="submit"></button>
-                            </form>
+        <main>
+            <div class="row">
+                <div class="col l8 s12 m12">
+                    <div class="row card-panel" style="height: 280px">
+                        <div class="col l12 s12 m12">
+                            <div>
+                                Pesquise, encontre e conheça novas pessoas!
+                                <form class="search" action="{{ url('/search') }}">
+                                    <div class="row col l12 s12 m12 input-field">
+                                        <span class="prefix mdi mdi-account-search"></span>
+                                        <input type="text" name="term" id="term" class="search_term" placeholder="Digite o que deseja encontrar">
+                                    </div>
+                                    <button hidden type="submit"></button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col l4 s12 m12">
-                <div class="card-panel">
-                    <h5>Ultimos termos buscados</h5>
-                    @if(count($last_searches) > 0)
-                        <div class="collection">
-                            @foreach($last_searches as $search)
-                                <a href="{{ url('/search?term='.$search->term) }}" class="collection-item dismissable">{{ $search->term }} <span data-badge-caption="{{ $search->results > 1 ? 'resultados' : 'resultado' }}" class="new badge">{{ $search->results }}</span></a>
-                            @endforeach
-                        </div>
-                    @else
-                        <div class="collection">
-                            <a href="{{ url('/search?term='.$last_searches->term) }}" class="collection-item dismissable">{{ $last_searches->term }} <span data-badge-caption="{{ $last_searches->results > 1 ? 'resultados' : 'resultado' }}" class="new badge">{{ $last_searches->results }}</span></a>
-                        </div>
-                    @endif
+                <div class="col l4 s12 m12">
+                    <div class="card-panel">
+                        <h5>Ultimos termos buscados</h5>
+                        @if(count($last_searches) > 0)
+                            <div class="collection">
+                                @foreach($last_searches as $search)
+                                    <a href="{{ url('/search?term='.$search->term) }}" class="collection-item dismissable">{{ $search->term }} <span data-badge-caption="{{ $search->results > 1 ? 'resultados' : 'resultado' }}" class="new badge">{{ $search->results }}</span></a>
+                                @endforeach
+                            </div>
+                        @else
+                            <div class="collection">
+                                <a href="{{ url('/search?term='.$last_searches->term) }}" class="collection-item dismissable">{{ $last_searches->term }} <span data-badge-caption="{{ $last_searches->results > 1 ? 'resultados' : 'resultado' }}" class="new badge">{{ $last_searches->results }}</span></a>
+                            </div>
+                        @endif
+                    </div>
                 </div>
             </div>
-        </div>
+            <br><br><br><br><br>
+        </main>
     @endif
+
+    @include('components.footer')
+
 @endsection

@@ -91,7 +91,7 @@ class VueController extends Controller
             $image->save();
         }
 
-        Notification::send(User::all(), new PostCreated($post->poster->name. ' criou uma nova publicação...' ,'/post?id='.$post->id));
+        Notification::send(User::all(), new PostCreated($post->poster->name. ' criou uma nova publicação...' ,'/post?id='.$post->id, Auth::user()->id));
 
         return redirect()->back()->with(['messages'=>['Post criado com sucesso!']]);
     }

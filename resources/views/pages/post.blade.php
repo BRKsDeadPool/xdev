@@ -3,78 +3,57 @@
 @if(isset($post))
 @section('title')Post de {{ $post->poster->name.' '.$post->poster->last_name }} @endsection
 @section('content')
+    {{ \Carbon\Carbon::setLocale('pt_BR') }}
     @if(count($post->images) < 1)
         <br><br><br><br>
     @endif
+    @include('components.navbar')
     <div class="row">
         <div class="col offset-l2 l8 s12 m12">
-            <div class="card-panel">
-                <div class="row">
-                    <div class="col s12 m12 l12">
-                        <div class="row">
-                            <div class="col s2 m2 l1">
-                                <a href="profile?id={{ $post->poster->id }}">
-                                    <xf-thumb src="/storage/images/{{ $post->poster->setting->profilepic }}" alt="{{ $post->poster->name.' '.$post->poster->last_name }}" width="70px" height="70px"></xf-thumb>
-                                </a>
-                            </div>
-                            <div class="col s10 m10 l11">
-                                <br><br>
-                                <a href="profile?id={{ $post->poster->id }}">
-                                    {{ $post->poster->name.' '.$post->poster->last_name }}
-                                </a>
-                            </div>
+            <div id="profile-page-wall-post" class="card">
+                <div class="card-profile-title">
+                    <div class="row">
+                        <div class="col s1">
+                            <xf-thumb alt="{{ $post->poster->name.' '.$post->poster->last_name.' Profile Picture' }}" src="storage/images/{{ $post->poster->setting->profilepic }}" mclass="circle responsive-img valign profile-post-uer-image hoverable" width="50px" height="50px"></xf-thumb>
+                        </div>
+                        <div class="col s10">
+                            <p class="grey-text text-darken-4 margin">{{ $post->poster->name.' '.$post->poster->last_name }}</p>
+                            <span class="grey-text text-darken-1 ultra-small">Criou uma publicação  -
+                                                            <a href="/post?id={{$post->id}}">
+                                                                {{ $post->created_at->diffForHumans() }}
+                                                            </a>
+                                                            </span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col s12">
+                            <p class="margin">{{ $post->body }}</p>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col s12 m12 l7">
-                        <div class="row">
-                            @if($post->body != '')
-                                <div class="row">
-                                    <div class="col s12 m12 l12">
-                                        <div class="row">
-                                            <div class="col s12 m12 l12">
-                                                <blockquote style="-ms-word-wrap: break-word;word-wrap: break-word;">{{ $post->body }}</blockquote>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-                            @if(count($post->images) > 0)
-                            <div class="row">
-                                <div class="col l12 s12 m12">
-                                    @foreach($post->images as $image)
-                                        <a href="/storage/images/{{ $image->name }}" data-lightbox="post_image" data-title="{{ $post->poster->name.' '.$post->poster->last_name }}">
-                                            <xf-thumb src="/storage/images/{{ $image->name }}" alt="{{ $post->poster->name.' '.$post->poster->last_name }}" width="100%" height="500px"></xf-thumb>
-                                        </a>
-                                    @endforeach
-                                </div>
-                            </div>
-                            @endif
-                        </div>
-                        <div class="row">
-                            <div class="col l8 s12 m12">
-                                <div class="left post_actions">
-                                    <a href="post?id={{ $post->id }}" class="center">{{ $post->created_at->diffForHumans() }}</a>
-
-                                    <button class="post_like post-react btn-floating waves-effect red accent-5 margin hoverable" onclick="like({{ $post->id }}, 'like', 'likecount-{{ $post->id }}')" data-action="like" data-postid="{{ $post->id }}">
-                                        <span class="mdi mdi-thumb-up"> </span>
-                                        <span class="like_count" id="likecount-{{ $post->id }}"> {{ count($post->likes) > 0 ? count($post->likes) : '' }}</span></button>
-                                </div>
+                @if($post->images != '')
+                    @foreach($post->images as $image)
+                        <div class="card-image profile-medium">
+                            <div class="image-container">
+                                <a href="/storage/images/{{ $image->name }}" data-lightbox="post_image">
+                                    <xf-thumb width="100%" height="360px" src="/storage/images/{{ $image->name }}" alt="Image posted by {{ $image->user->name.' '.$image->user->last_name }} in {{$image->created_at}}"></xf-thumb>
+                                </a>
                             </div>
                         </div>
-                    </div>
-                    <div class="{{ count($post->images) > 0 ? 'col l4 s12 m12 ' : 'col l12 s12 m12' }}">
-                        <ul class="collection">
-                            <li class="collection-item">Aqui ficarão os comentarios</li>
-                            <li class="collection-item">Aqui ficarão os comentarios</li>
-                            <li class="collection-item">Aqui ficarão os comentarios</li>
-                        </ul>
+                    @endforeach
+                @endif
+                <div class="card-action row">
+                    <div class="center post_actions">
+                        <button class="post_like post-react btn-floating waves-effect red accent-5 margin hoverable" onclick="like({{ $post->id }}, 'like', 'likecount-{{ $post->id }}')">
+                            <span class="mdi mdi-thumb-up"> </span>
+                            <span class="like_count" id="likecount-{{ $post->id }}"> {{ count($post->likes) > 0 ? count($post->likes) : '' }}</span></button>
                     </div>
                 </div>
             </div>
+        </div>
     </div>
-    <br><br><br><br>
+
+    @include('components.footer')
 @endsection
 
 @else

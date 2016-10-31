@@ -46,15 +46,7 @@
 
 
 <div id="app">
-@if(Auth::user())
-@include('components.navbar')
-@endif
-<main>
 @yield('content')
-</main>
-@if(Auth::user())
-@include('components.footer')
-@endif
 </div>
 
 <!-- Scripts -->

@@ -26,7 +26,7 @@
                                 </div>
                             @endif
                             <div class="center post_actions">
-                                <button class="post_like post-react btn-floating waves-effect red accent-5 margin hoverable" onclick="like({{ $post->id }}, 'like', 'likecount-{{ $post->id }}')" data-action="like" data-postid="{{ $post->id }}">
+                                <button class="post_like post-react btn-floating waves-effect red accent-5 margin hoverable" onclick="like({{ $post->id }}, 'like', 'likecount-{{ $post->id }}')">
                                     <span class="mdi mdi-thumb-up"> </span>
                                     <span class="like_count" id="likecount-{{ $post->id }}"> {{ count($post->likes) > 0 ? count($post->likes) : '' }}</span></button>
                             </div>
@@ -38,8 +38,8 @@
                         </div>
                     </div>
                     <div class="timeline-badge white">
-                        <a href="profile?id={{ $post->poster->id }}" class="hoverable padding circle">
-                            <img class="responsive-img" src="{{ asset('/storage/images/'.$post->poster->setting->profilepic) }}">
+                        <a href="profile?id={{ $post->poster->id }}" class="">
+                            <xf-thumb src="{{ asset('/storage/images/'.$post->poster->setting->profilepic) }}" mclass="responsive-img hoverable padding circle" width="40px" height="40px"></xf-thumb>
                         </a>
                     </div>
                 </div>

@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class ProfileController extends Controller
 {
@@ -32,5 +33,22 @@ class ProfileController extends Controller
 
 
         return view('pages.profile_images',[ 'user'=>User::find($user),'images'=>$images ]);
+    }
+
+    public function getProfileFriends(Request $request)
+    {
+        $user;
+        $friends;
+        $mutual;
+
+        if ($request->id != ''){
+            $user = User::find($request->id);
+            $friends = $user->getAcceptedFriendships();
+            $mutual = Auth::user()->getMutualFriendsCount($user);
+            return  view('pages.profile_friends', ['user'=>$user, 'friends'=>$friends,'mutual'=>$mutual]);
+        }
+
+        return  view('pages.profile_friends');
+
     }
 }

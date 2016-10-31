@@ -5,10 +5,11 @@ namespace App;
 use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Nano\Likeable\Likeable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Friendable;
+    use Notifiable, Friendable, Likeable;
 
     /**
      * The attributes that are mass assignable.

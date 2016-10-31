@@ -39,6 +39,10 @@ Route::group(['namespace' => 'pages'], function (){
                'uses'            => 'ProfileController@getProfileImages',
                'as'              => 'get.profile.images'
             ]);
+            Route::get('/profile/friends',[
+                'uses'           => 'ProfileController@getProfileFriends',
+                'as'             => 'get.profile.friends'
+            ]);
         });
         Route::group(['namespace'=>'search'], function (){
             Route::get('/search',[
@@ -46,7 +50,22 @@ Route::group(['namespace' => 'pages'], function (){
             ]);
         });
         Route::group(['namespace'=>'setting'], function (){
-
+            Route::get('/settings',[
+               'uses'            => 'SettingController@getSetting',
+               'as'              => 'get.settings'
+            ]);
+            Route::post('/edit/setting',[
+                'uses'              =>  'SettingController@editSetting',
+                'as'                =>  'post.edit.setting'
+            ]);
+            Route::post('/edit/profilepic',[
+               'uses'               =>  'SettingController@editProfilepic',
+               'as'                 =>  'edit.profilepic'
+            ]);
+            Route::post('/edit/wallpaper',[
+               'uses'               =>  'SettingController@editWallpaper',
+               'as'                 =>  'edit.wallpaper'
+            ]);
         });
         Route::group(['namespace'=>'stalker'], function (){
 

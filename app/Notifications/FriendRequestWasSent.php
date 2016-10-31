@@ -7,21 +7,22 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class PostCreated extends Notification
+class FriendRequestWasSent extends Notification
 {
     use Queueable;
-    public $message;
     public $url;
+    public $message;
     public $notifier;
+
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct($message, $url, $notifier)
+    public function __construct($url, $message, $notifier)
     {
+        $this->url  = $url;
         $this->message = $message;
-        $this->url = $url;
         $this->notifier = $notifier;
     }
 
@@ -37,6 +38,20 @@ class PostCreated extends Notification
     }
 
     /**
+     * Get the mail representation of the notification.
+     *
+     * @param  mixed  $notifiable
+     * @return \Illuminate\Notifications\Messages\MailMessage
+     */
+    public function toMail($notifiable)
+    {
+        return (new MailMessage)
+                    ->line('The introduction to the notification.')
+                    ->action('Notification Action', 'https://laravel.com')
+                    ->line('Thank you for using our application!');
+    }
+
+    /**
      * Get the array representation of the notification.
      *
      * @param  mixed  $notifiable
@@ -46,8 +61,8 @@ class PostCreated extends Notification
     {
         return [
             'message'=>$this->message,
-            'url'    => $this->url,
-            'notifier'=>$this->notifier
+            'url'    =>$this->url,
+            'notifier'=> $this->notifier
         ];
     }
 }

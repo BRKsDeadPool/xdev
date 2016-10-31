@@ -45,4 +45,26 @@ $(document).ready(function () {
         $('#post_image').replaceWith($('#post_image').val('').clone(true));
         $('#post_image_preview').empty();
     });
+    $('.friendship-request').find('.friendship-action').on('click', function (event) {
+        event.preventDefault();
+        var req_id = event.target.parentNode.parentNode.id;
+        var btn = event.target.parentNode;
+        var senderid = btn.parentNode.dataset['senderid'];
+        var action = btn.dataset['action'];
+
+        $.ajax({
+            method: 'POST',
+            url: frindurl,
+            data: {_token: token, action: action, senderid: senderid}
+        }).done(function (res) {
+            if (typeof res.error == 'undefined'){
+                $('#'+req_id).remove();
+                Materialize.toast(res.message, 4000, 'warning');
+            } else {
+                Materialize.toast(res.error, 4000, 'error');
+            }
+        });
+
+    });
+
 });
