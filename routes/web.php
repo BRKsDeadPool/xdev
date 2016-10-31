@@ -13,7 +13,7 @@
 
 Auth::routes();
 
-Route::group(['namespace' => 'pages'], function (){
+Route::group(['namespace' => 'Pages'], function (){
     Route::group(['middleware'=>'auth'], function (){
         Route::group(['namespace'=>'about'], function (){
 
