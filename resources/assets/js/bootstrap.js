@@ -47,6 +47,7 @@ Vue.http.interceptors.push((request, next) => {
  * Todas as bibiliotecas personalizadas vão ficar localizadas abaixo desse
  * conteudo para evitar conflito entre as bibliotecas padrão.
  */
-require('./libs/materialize')
+
+require('./libs/materialize');
 require('./libs/lightbox');
 require('./main');

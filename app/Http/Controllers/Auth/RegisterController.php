@@ -90,7 +90,7 @@ class RegisterController extends Controller
         $setting->wallpaper = $wallpaper->name;
         $setting->birthday = $data['bd_year'].'/'.$data['bd_month'].'/'.$data['bd_day'];
         $setting->gender = $data['gender'];
-        $setting->about = $user->name.' '.$user->last_name.' entrou no facebook em '.$user->created_at->day.'/'.$user->created_at->month.'/'.$user->created_at->year;
+        $setting->about = $user->name.' '.$user->last_name.' entrou no XFind em '.$user->created_at->day.'/'.$user->created_at->month.'/'.$user->created_at->year;
         $setting->status = 'Eu comecei a usar o XFind!';
         $setting->save();
 

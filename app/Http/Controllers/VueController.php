@@ -44,7 +44,7 @@ class VueController extends Controller
 
         event(new MessageWasReceived($message, $user, $setting));
 
-        return response()->json(['success'=>'true'], 200);
+        return response()->json(['success'=>'true','message'=>$message,'user'=>$user], 200);
     }
 
     public function postNewPost(Request $request)
