@@ -57,9 +57,9 @@
                         @foreach(App\User::where('id','<>',Auth::user()->id)->limit(5)->with('setting')->get() as $user)
                             @if(isset($user))
                                 @if(
-				$user->isFriendWith(Auth::user()) == 'false' AND
-				$user->hasFriendRequestFrom(Auth::user()) == 'false' AND
-				$user->hasSentFriendRequestTo(Auth::user()) == 'false'
+				!$user->isFriendWith(Auth::user()) AND
+				!$user->hasFriendRequestFrom(Auth::user()) AND
+				!$user->hasSentFriendRequestTo(Auth::user())
 )
                                     <li class="collection-item avatar">
                                         <div class="row">
