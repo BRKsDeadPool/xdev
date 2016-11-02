@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <a href="{{ url('/') }}" class="brand-logo margin-left-10">{{ config('app.name', 'XFind') }}</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ url('/profile?id='.Auth::user()->id) }}">{{Auth::user()->name.' '.Auth::user()->last_name}}</a></li>
+                <li><a href="{{ url('//profile?id='.Auth::user()->id) }}">{{Auth::user()->name.' '.Auth::user()->last_name}}</a></li>
                 <li><a href="{{ url('/') }}"><span style="position:relative; top: 5px" class="mif">timeline</span></a></li>
                 <li>
                     <a href="#" data-beloworigin="true" data-alignment="right" data-constrainwidth="false" data-activates="friendship_dropdown" class="dropdown-button">
@@ -55,40 +55,42 @@
                         <li class="divider"></li>
                         <li><a href="#">Pessoas que você possa se interessar:</a></li>
                         @foreach(App\User::where('id','<>',Auth::user()->id)->limit(5)->with('setting')->get() as $user)
-                            @if(
-				!$user->isFriendWith(Auth::user()) AND
-				!$user->hasFriendRequestFrom(Auth::user()) AND
-				!$user->hasSentFriendRequestTo(Auth::user())
+                            @if(isset($user))
+                                @if(
+				$user->isFriendWith(Auth::user()) == 'false' AND
+				$user->hasFriendRequestFrom(Auth::user()) == 'false' AND
+				$user->hasSentFriendRequestTo(Auth::user()) == 'false'
 )
-                                <li class="collection-item avatar">
-                                    <div class="row">
-                                        <div class="col s6 m6 l6">
-                                            <div class="row">
-                                                <div class="col s1 m1 l1">
-                                                    <a href="profile?id={{$user->id}}">
-                                                        <xf-thumb width="60px" height="60px" src="/storage/images/{{ $user->setting->profilepic }}" mclass="circle"></xf-thumb>
-                                                    </a>
-                                                </div>
-                                                <div class="col s11 m11 l11">
-                                                    <span class="title">{{ $user->name.' '.$user->last_name }}</span>
+                                    <li class="collection-item avatar">
+                                        <div class="row">
+                                            <div class="col s6 m6 l6">
+                                                <div class="row">
+                                                    <div class="col s1 m1 l1">
+                                                        <a href="/profile?id={{$user->id}}">
+                                                            <xf-thumb width="60px" height="60px" src="/storage/images/{{ $user->setting->profilepic }}" mclass="circle"></xf-thumb>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col s11 m11 l11">
+                                                        <span class="title">{{ $user->name.' '.$user->last_name }}</span>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col s6 m6 l6">
-                                            <div href="#!" class="secondary-content row">
-                                                <div class="input-field col s6 m6 l6">
-                                                    <div class="btn-floating nav-edit-friendship"
-                                                         data-action="send"
-                                                         data-target="{{$user->id}}"
-                                                         data-element="#user-{{$user->id}}"
-                                                         id="user-{{$user->id}}">
-                                                        <span class="mdi mdi-account-plus" style="position:relative; bottom: 7px"></span>
+                                            <div class="col s6 m6 l6">
+                                                <div href="#!" class="secondary-content row">
+                                                    <div class="input-field col s6 m6 l6">
+                                                        <div class="btn-floating nav-edit-friendship"
+                                                             data-action="send"
+                                                             data-target="{{$user->id}}"
+                                                             data-element="#user-{{$user->id}}"
+                                                             id="user-{{$user->id}}">
+                                                            <span class="mdi mdi-account-plus" style="position:relative; bottom: 7px"></span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </li>
+                                    </li>
+                                @endif
                             @endif
                         @endforeach
                     </ul>

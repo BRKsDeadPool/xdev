@@ -12,7 +12,6 @@
                 <div class="settings">
                     <div class="col l12 s12 m12 card-panel">
                         <div class="row setting_edit">
-                            <br>
                             <div class="col s12 m12 l6 input-field">
                                 <input type="text" name="name" id="name" value="{{ Auth::user()->name }}">
                                 <label for="name">Nome</label>
@@ -150,9 +149,9 @@
                 event.preventDefault();
 
                 var el = event.target;
-                var setting_name = el.parentNode.parentNode.childNodes[0].childNodes[0].name
-                var setting_value = el.parentNode.parentNode.childNodes[0].childNodes[0].value
-                var setting_id = el.parentNode.parentNode.childNodes[0].childNodes[0].id
+                var setting_name = el.parentNode.parentNode.childNodes[0].childNodes[0].name;
+                var setting_value = el.parentNode.parentNode.childNodes[0].childNodes[0].value;
+                var setting_id = el.parentNode.parentNode.childNodes[0].childNodes[0].id;
 
 
                 $.ajax({
@@ -166,4 +165,4 @@
             });
         });
     </script>
-@endsection
+@append

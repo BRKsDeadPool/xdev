@@ -3,11 +3,12 @@
 @if(isset($post))
 @section('title')Post de {{ $post->poster->name.' '.$post->poster->last_name }} @endsection
 @section('content')
+    @include('components.navbar')
+
     {{ \Carbon\Carbon::setLocale('pt_BR') }}
     @if(count($post->images) < 1)
         <br><br><br><br>
     @endif
-    @include('components.navbar')
     <div class="row">
         <div class="col offset-l2 l8 s12 m12">
             <div id="profile-page-wall-post" class="card">
@@ -52,12 +53,12 @@
             </div>
         </div>
     </div>
-
+    <br><br><br>
     @include('components.footer')
 @endsection
 
 @else
-@section('title')
+@section('title')Post não encontrado @endsection
 @section('content')
     <br><br><br><br>
     <div class="row">
