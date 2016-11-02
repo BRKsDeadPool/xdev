@@ -37,17 +37,6 @@
                                                     {{ $user->setting->status }}
                                                 </div>
                                                 <div class="card-action profile_actions">
-                                                    @if($user->id != Auth::user()->id)
-                                                        @if(Auth::user()->isFriendWith($user))
-                                                            <a id="friendship_action" href="#" class="send-request btn-flat" data-userid="{{ $user->id }}">Desfazer amizade</a>
-                                                        @elseif(Auth::user()->hasSentFriendRequestTo($user))
-                                                            <a id="friendship_action" href="#" class="send-request btn-flat" data-userid="{{ $user->id }}">Cancelar pedido de amizade</a>
-                                                        @elseif($user->hasSentFriendRequestTo(Auth::user()))
-                                                            <a id="friendship_action" href="#" class="send-request btn-flat" data-userid="{{ $user->id }}">Rejeitar pedido de amizade</a>
-                                                        @else
-                                                            <a id="friendship_action" href="#" class="send-request btn-flat" data-userid="{{ $user->id }}">Enviar pedido de amizade</a>
-                                                        @endif
-                                                    @endif
                                                     <a href="{{ route('get.profile.images',['id'=>$user->id]) }}" class="btn-flat">Imagens</a>
                                                 </div>
 
