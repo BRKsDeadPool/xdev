@@ -3,7 +3,7 @@
         <div class="nav-wrapper">
             <a href="{{ url('/') }}" class="brand-logo margin-left-10">{{ config('app.name', 'XFind') }}</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="{{ url('//profile?id='.Auth::user()->id) }}">{{Auth::user()->name.' '.Auth::user()->last_name}}</a></li>
+                <li><a href="{{ url('/profile?id='.Auth::user()->id) }}">{{Auth::user()->name.' '.Auth::user()->last_name}}</a></li>
                 <li><a href="{{ url('/') }}"><span style="position:relative; top: 5px" class="mif">timeline</span></a></li>
                 <li>
                     <a href="#" data-beloworigin="true" data-alignment="right" data-constrainwidth="false" data-activates="friendship_dropdown" class="dropdown-button">
