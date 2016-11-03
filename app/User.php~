@@ -2,7 +2,6 @@
 
 namespace App;
 
-use Laravel\Scout\Searchable;
 use Hootlex\Friendships\Traits\Friendable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +9,7 @@ use Nano\Likeable\Likeable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Friendable, Searchable, Likeable;
+    use Notifiable, Friendable, Likeable;
 
     /**
      * The attributes that are mass assignable.
@@ -29,15 +28,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function toSearchableArray()
-    {
-        $array = $this->toArray();
-
-        // Customize array...
-
-        return $array;
-    }
 
     public function likes()
     {

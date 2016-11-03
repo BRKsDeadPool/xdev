@@ -18,14 +18,13 @@ class SearchController extends Controller
         $term = $request->x;
 
         if ($term != ''){
-            $users = User::
-            where('name','LIKE',$term)
-                ->orwhere('name','LIKE',$term)
-		->orwhere('name','LIKE',$term.'%')
-                ->orwhere('name','LIKE','%'.$term.'%')
-                ->orwhere('name','LIKE','%'.$term)
-                ->orwhere('id','like',$term)
-                ->get();
+		User::where('id','=',$term)
+			->orwhere('name','LIKE','%'.$term)
+			->orwhere('name','LIKE',$term.'%')
+			->orwhere('name','LIKE',$term)
+			->orwhere('name','=',$term)->searchable();
+
+	$users = User::search($term)->get();
 
             if (count(Search::orderBy('created_at','desc')->where('user_id','=',$request->user()->id)->where('term','=', $term)->get()) < 1) {
                 Search::create([

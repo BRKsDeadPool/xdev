@@ -168,8 +168,7 @@ return [
          */
         Hootlex\Friendships\FriendshipsServiceProvider::class,
         \Nano\Likeable\LikeableServiceProvider::class,
-	Laravel\Scout\ScoutServiceProvider::class,
- 	TeamTNT\Scout\TNTSearchScoutServiceProvider::class,	
+	Laravel\Scout\ScoutServiceProvider::class,       
 	//
 
         /*
