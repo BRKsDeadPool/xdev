@@ -45,7 +45,7 @@ Route::group(['namespace' => 'Pages'], function (){
             ]);
         });
         Route::group(['namespace'=>'search'], function (){
-            Route::get('/search',[
+            Route::get('/find',[
                 'uses'            => 'SearchController@getSearch'
             ]);
         });

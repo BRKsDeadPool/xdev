@@ -37,7 +37,7 @@
                 <div class="col l4">
                     <div class="row">
                         <div class="col l12">
-                            <form class="search" action="{{ url('/find') }}">
+                            <form class="search" action="{{ url('/search') }}">
                                 <div class="row col l12 input-field">
                                     <span class="prefix mdi mdi-account-search"></span>
                                     <input type="text" name="x" id="x" class="search_term" placeholder="Digite o que deseja encontrar">

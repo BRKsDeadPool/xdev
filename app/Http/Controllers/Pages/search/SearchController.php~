@@ -15,7 +15,7 @@ class SearchController extends Controller
 {
     public function getSearch(Request $request)
     {
-        $term = $request->x;
+        $term = $request->term;
 
         if ($term != ''){
             $users = User::
