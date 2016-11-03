@@ -22,7 +22,7 @@
                     @foreach($friends->chunk(4) as $chunk)
                         <div class="row">
                             @foreach($chunk as $friend)
-                                @if($friend->sender->id != Auth::user()->id)
+                                @if($friend->sender->id != $user->id)
                                     <div class="col l3 m6 s6">
                                         <div class="card">
                                             <a href="/profile?id={{ $friend->sender->id }}">
