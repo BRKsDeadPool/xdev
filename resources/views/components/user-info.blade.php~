@@ -1,6 +1,5 @@
 <div class="card-image hoverable">
-    <a href="{{ url('/profile?id='.Auth::user()->id) }}">
-	<xf-thumb width="100%" height="170px" src="/storage/images/{{ Auth::user()->setting->profilepic }}"></xf-thumb>
+    <a href="{{ url('/profile?id='.Auth::user()->id) }}"><img src="{{ asset('/storage/images/'.Auth::user()->setting->profilepic) }}" class="responsive-img"></a>
 </div>
 <div class="card-content">
     <a href="{{ url('/profile?id='.Auth::user()->id) }}" class="black-text"><h5>{{ Auth::user()->name.' '.Auth::user()->last_name }}</h5></a>
