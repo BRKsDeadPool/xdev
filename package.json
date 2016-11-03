@@ -17,6 +17,7 @@
     "vue-resource": "^1.0.3"
   },
   "dependencies": {
+    "hammerjs": "^2.0.8",
     "laravel-echo": "^1.1.0",
     "moment": "^2.15.2",
     "nprogress": "^0.2.0",
