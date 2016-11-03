@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col l6">
                 <h5 class="white-text">Sua ajuda é muito importante!</h5>
-                <p class="grey-text text-lighten-4">Nós precisamos da sua ajuda pra tornar o XFind ainda melhor!
+                <p class="grey-text text-lighten-4">Nós precisamos da sua ajuda para tornar o XFind ainda melhor!
                     Veja ao lado algumas das formas de nos ajudar a melhorar.</p>
             </div>
             <div class="col l4 offset-l2">
