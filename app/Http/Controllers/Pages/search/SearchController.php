@@ -20,7 +20,8 @@ class SearchController extends Controller
         if ($term != ''){
             $users = User::
             where('name','LIKE',$term)
-                ->orwhere('name','LIKE',$term.'%')
+                ->orwhere('name','LIKE',$term)
+		->orwhere('name','LIKE',$term.'%')
                 ->orwhere('name','LIKE','%'.$term.'%')
                 ->orwhere('name','LIKE','%'.$term)
                 ->orwhere('id','like',$term)
