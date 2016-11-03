@@ -42,7 +42,7 @@
         ]); ?>
     </script>
 </head>
-<body class="blue-grey lighten-3">
+<body class="grey lighten-3">
 
 
 <div id="app">
